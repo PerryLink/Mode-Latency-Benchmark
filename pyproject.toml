@@ -1,0 +1,48 @@
+[tool.poetry]
+name = "model-latency-benchmark"
+version = "0.1.0"
+description = "实时对比国产大模型 API 响应速度的 CLI 工具"
+authors = ["Chance Dean <novelnexusai@outlook.com>"]
+license = "Apache-2.0"
+readme = "README.md"
+packages = [{include = "model_latency_benchmark", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+rich = "^13.7.0"
+httpx = "^0.26.0"
+click = "^8.1.7"
+python-dotenv = "^1.0.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.3"
+pytest-asyncio = "^0.21.1"
+pytest-cov = "^4.1.0"
+black = "^23.12.1"
+ruff = "^0.1.9"
+mypy = "^1.8.0"
+
+[tool.poetry.scripts]
+model-latency-benchmark = "model_latency_benchmark.cli:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 100
+target-version = ['py39']
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
