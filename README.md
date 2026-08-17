@@ -29,8 +29,18 @@ progress bars and a ranked result table.
 
 ## Quick start
 
+Using pip:
+
 ```bash
 pip install model-latency-benchmark
+```
+
+Using Poetry (for development):
+
+```bash
+git clone https://github.com/PerryLink/model-latency-benchmark.git
+cd model-latency-benchmark
+poetry install
 ```
 
 Create a `.env` file with the API keys for the providers you want to test:
@@ -63,12 +73,35 @@ model-latency-benchmark --debug
 
 ## Supported providers
 
-| Provider | Name | Environment variable |
-|----------|------|---------------------|
-| `deepseek` | DeepSeek | `DEEPSEEK_API_KEY` |
-| `baidu` | 百度文心 | `BAIDU_API_KEY` |
-| `alibaba` | 阿里通义 | `ALIBABA_API_KEY` |
-| `bytedance` | 字节豆包 | `BYTEDANCE_API_KEY` |
+| Provider | Name | Environment variable | Get API key |
+|----------|------|---------------------|-------------|
+| `deepseek` | DeepSeek | `DEEPSEEK_API_KEY` | [DeepSeek Platform](https://platform.deepseek.com/) |
+| `baidu` | 百度文心 | `BAIDU_API_KEY` | [Baidu AI Cloud](https://cloud.baidu.com/) |
+| `alibaba` | 阿里通义 | `ALIBABA_API_KEY` | [Alibaba Cloud DashScope](https://dashscope.aliyun.com/) |
+| `bytedance` | 字节豆包 | `BYTEDANCE_API_KEY` | [Volcano Engine](https://www.volcengine.com/) |
+
+## Project structure
+
+```
+model-latency-benchmark/
+├── src/model_latency_benchmark/
+│   ├── __init__.py
+│   ├── __main__.py
+│   ├── cli.py              # CLI interface
+│   ├── core.py             # Core benchmark logic
+│   └── utils.py            # Utility functions
+├── tests/                  # Test files
+├── pyproject.toml          # Poetry configuration
+└── README.md
+```
+
+## Tech stack
+
+- **CLI framework**: Click
+- **HTTP client**: httpx (async support)
+- **Terminal UI**: Rich
+- **Environment**: python-dotenv
+- **Package manager**: Poetry
 
 ## Development
 
@@ -77,7 +110,18 @@ poetry install
 poetry run pytest --cov
 poetry run black .
 poetry run ruff check .
+poetry run mypy src/
 ```
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines. For issues or suggestions,
+please submit an [Issue](https://github.com/PerryLink/model-latency-benchmark/issues).
+
+## Related
+
+- [dsh-budget](https://github.com/PerryLink/dsh-budget) — the DSH plugin this project was ported into
+- [PerryLink](https://github.com/PerryLink) — the PerryLink DSH Plugin Family
 
 ## License
 

@@ -28,8 +28,18 @@
 
 ## 快速开始
 
+使用 pip：
+
 ```bash
 pip install model-latency-benchmark
+```
+
+使用 Poetry（开发）：
+
+```bash
+git clone https://github.com/PerryLink/model-latency-benchmark.git
+cd model-latency-benchmark
+poetry install
 ```
 
 创建 `.env` 文件，填写你要测试的提供商 API key：
@@ -62,12 +72,35 @@ model-latency-benchmark --debug
 
 ## 支持的提供商
 
-| Provider | 名称 | 环境变量 |
-|----------|------|----------|
-| `deepseek` | DeepSeek | `DEEPSEEK_API_KEY` |
-| `baidu` | 百度文心 | `BAIDU_API_KEY` |
-| `alibaba` | 阿里通义 | `ALIBABA_API_KEY` |
-| `bytedance` | 字节豆包 | `BYTEDANCE_API_KEY` |
+| Provider | 名称 | 环境变量 | 获取 API Key |
+|----------|------|----------|--------------|
+| `deepseek` | DeepSeek | `DEEPSEEK_API_KEY` | [DeepSeek 平台](https://platform.deepseek.com/) |
+| `baidu` | 百度文心 | `BAIDU_API_KEY` | [百度智能云](https://cloud.baidu.com/) |
+| `alibaba` | 阿里通义 | `ALIBABA_API_KEY` | [阿里云 DashScope](https://dashscope.aliyun.com/) |
+| `bytedance` | 字节豆包 | `BYTEDANCE_API_KEY` | [火山引擎](https://www.volcengine.com/) |
+
+## 项目结构
+
+```
+model-latency-benchmark/
+├── src/model_latency_benchmark/
+│   ├── __init__.py
+│   ├── __main__.py
+│   ├── cli.py              # CLI 接口
+│   ├── core.py             # 核心基准测试逻辑
+│   └── utils.py            # 工具函数
+├── tests/                  # 测试文件
+├── pyproject.toml          # Poetry 配置
+└── README.md
+```
+
+## 技术栈
+
+- **CLI 框架**：Click
+- **HTTP 客户端**：httpx（异步支持）
+- **终端 UI**：Rich
+- **环境配置**：python-dotenv
+- **包管理器**：Poetry
 
 ## 开发
 
@@ -76,7 +109,18 @@ poetry install
 poetry run pytest --cov
 poetry run black .
 poetry run ruff check .
+poetry run mypy src/
 ```
+
+## 贡献
+
+查看 [CONTRIBUTING.md](CONTRIBUTING.md) 了解贡献指南。如有问题或建议，
+请提交 [Issue](https://github.com/PerryLink/model-latency-benchmark/issues)。
+
+## 相关项目
+
+- [dsh-budget](https://github.com/PerryLink/dsh-budget) — 本项目被移植进的 DSH 插件
+- [PerryLink](https://github.com/PerryLink) — PerryLink DSH 插件家族
 
 ## 许可证
 
