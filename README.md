@@ -1,6 +1,7 @@
 <div align="center">
 
 # Mode-Latency-Benchmark
+[![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/mode-latency-benchmark)
 
 **A CLI tool for real-time comparison of Chinese LLM API response speed (TTFT and total time).**
 
